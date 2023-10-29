@@ -1,6 +1,2 @@
-const Home = () => (
-  <div>
-    <h1>Welcome to Homepage</h1>
-  </div>
-)
-export default Home
+import Admin from '@/components/admin'
+export default Admin
