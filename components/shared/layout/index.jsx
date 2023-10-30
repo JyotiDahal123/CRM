@@ -1,7 +1,5 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import SignIn from "./signin";
-import Signup from "./signup";
 import { useRouter } from "next/router";
 import { UserAddOutlined, HomeOutlined, TeamOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
@@ -27,7 +25,7 @@ const Layout = ({ children }) => {
     currentURL === "/"
       ? [
           getItem(
-            "Admin page",
+            "Home page",
             "sub1",
             <HomeOutlined style={{ fontSize: "24px" }} />,
             null,
@@ -36,14 +34,14 @@ const Layout = ({ children }) => {
         ]
       : [
           getItem(
-            "Customers",
+            "Admin",
             "sub2",
             <TeamOutlined style={{ fontSize: "24px" }} />,
             null,
             "item"
           ),
           getItem(
-            "New customer",
+            "Customers",
             "sub3",
             <UserAddOutlined style={{ fontSize: "24px" }} />,
             null,
@@ -52,10 +50,10 @@ const Layout = ({ children }) => {
         ];
 
   const onClick = (e) => {
-    if (e.key === "sub3") {
-      router.push("/customers/new-customer");
+    if (e.key === "sub2") {
+      router.push("/admin");
     }
-    if (e.key === "sub2") return router.push("/customers");
+    if (e.key === "sub3") return router.push("/admin/customers");
     setCurrent(e.key);
   };
 
@@ -73,7 +71,7 @@ const Layout = ({ children }) => {
             <ul className="flex items-center gap-8">
               <li>
                 <Link
-                  href="/"
+                  href="/signup"
                   onClick={() => setOpen(true)}
                   className="py-[4px] flex justify-center items-center gap-1  px-3 bg-purple-500 border rounded-md text-white"
                 >
@@ -82,7 +80,7 @@ const Layout = ({ children }) => {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/signin"
                   onClick={() => setOpenin(true)}
                   className="py-[4px] flex justify-center items-center gap-1  px-3 bg-purple-500 border rounded-md text-white"
                 >
@@ -94,7 +92,7 @@ const Layout = ({ children }) => {
             <ul className="flex items-center gap-8">
               <li>
                 <Link
-                  href="/"
+                  href="/signin"
                   className="py-[4px] flex justify-center items-center gap-1  px-3 bg-purple-500 border rounded-md text-white"
                 >
                   Logout
@@ -114,8 +112,7 @@ const Layout = ({ children }) => {
           )}
         </nav>
       </div>
-      <Signup open={open} setOpen={setOpen} />
-      <SignIn openin={openin} setOpenin={setOpenin} />
+    
       <div className="flex">
         <Menu
           className="min-h-screen w-64 text-xl py-4 bg-slate-500 text-white"

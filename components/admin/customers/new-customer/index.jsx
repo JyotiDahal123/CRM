@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "@/components/layout/shared/navbar";
+
 import { AppstoreAddOutlined } from "@ant-design/icons";
 import {
   Button,
@@ -47,7 +47,7 @@ const NewCustomer = ({ children }) => {
   };
 
   return (
-    <Layout>
+
       <div className="w-9/12 mt-10 m-auto">
         <Button
           className="bg-blue-500 text-white"
@@ -138,7 +138,7 @@ const NewCustomer = ({ children }) => {
         </Drawer>
         <BottomBox openBox={openBox} setOpenBox={setOpenBox} />
       </div>
-    </Layout>
+   
   );
 };
 

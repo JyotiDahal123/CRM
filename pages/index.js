@@ -1,2 +1,2 @@
-import Admin from '@/components/admin'
-export default Admin
+import Home from '@/components/home'
+export default Home
