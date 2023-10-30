@@ -84,8 +84,8 @@ const BottomBox = ({ openBox, setOpenBox }) => {
             </div>
 
             <div className="text-lg">
-              <p>
-                Timer:{" "}
+              <p className="flex justify-center items-center gap-4">
+                <i className="bx bx-phone-call bx-tada bx-rotate-90 text-2xl text-blue-700"></i>{" "}
                 <span className="font-bold text-xl">
                   {`${hours < 10 ? `0${hours}` : hours}:${
                     minutes < 10 ? `0${minutes}` : minutes
