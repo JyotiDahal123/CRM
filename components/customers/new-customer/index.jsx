@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import Layout from "@/components/layout/shared/navbar";
 import { AppstoreAddOutlined } from "@ant-design/icons";
-import { Button, Col, Drawer, Form, Input, Row, Select, Space } from "antd";
+import {
+  Button,
+  Col,
+  Drawer,
+  Form,
+  Input,
+  Row,
+  Select,
+  Space,
+  message,
+} from "antd";
 import BottomBox from "../bottom-box";
 const { Option } = Select;
 
@@ -12,6 +22,14 @@ const NewCustomer = ({ children }) => {
   const [openBox, setOpenBox] = useState(false);
   // Create a form instance
   const [form] = Form.useForm();
+
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "This is a success message",
+    });
+  };
   // form submission
   const onFinish = (values) => {
     // save the value on local storage
@@ -22,7 +40,10 @@ const NewCustomer = ({ children }) => {
     // close form
     setOpen(false);
     // open box model for details of customer
-    setOpenBox(true);
+    success();
+    setTimeout(() => {
+      setOpenBox(true);
+    }, 1500);
   };
 
   return (
@@ -105,6 +126,7 @@ const NewCustomer = ({ children }) => {
               </Col>
             </Row>
             <Form.Item>
+              {contextHolder}
               <Space>
                 <Button className="bg-blue-500 text-white" htmlType="submit">
                   Start

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { FormOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd";
 import DateTime from "./date-time";
 import Note from "./note";
-
+import Notification from "./notification";
 const BottomBox = ({ openBox, setOpenBox }) => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -110,12 +109,7 @@ const BottomBox = ({ openBox, setOpenBox }) => {
           </div>
 
           <div className="flex justify-between mt-12">
-            <Button
-              className="bg-red-600 text-white px-2 flex justify-center items-center gap-1"
-              onClick={() => setOpenBox(false)}
-            >
-              <i class="bx bx-phone-off"></i> <span>End Call</span>
-            </Button>
+            <Notification openBox={openBox} setOpenBox={setOpenBox} />
             <div className="flex gap-4 text-lg items-center">
               <p className="">Follow up: </p> <DateTime />
             </div>

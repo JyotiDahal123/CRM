@@ -1,7 +1,8 @@
 import { Modal } from "antd";
 import SigninForm from "./form";
 
-const SignIn = ({openin, setOpenin}) => {
+
+const SignIn = ({ openin, setOpenin }) => {
   return (
     <>
       <Modal
@@ -11,7 +12,7 @@ const SignIn = ({openin, setOpenin}) => {
         closable={false}
       >
         <div className="bg-gray-100  p-6">
-          <SigninForm/>
+          <SigninForm />
         </div>
       </Modal>
     </>

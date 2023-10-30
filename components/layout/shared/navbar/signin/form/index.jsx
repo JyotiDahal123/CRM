@@ -1,12 +1,26 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message, Space } from "antd";
 import { useRouter } from "next/router";
 
 const SigninForm = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "This is a success message",
+    });
+  };
+ 
+
   const [form] = Form.useForm();
   const router = useRouter();
   const onFinish = (values) => {
+    //success message
+    success();
     console.log("Success:", values);
-    router.push("/customers");
+    // waite for see success message
+    setTimeout(() => {
+      router.push("/customers");
+    }, 1500);
   };
 
   // Random password generating function
@@ -63,10 +77,14 @@ const SigninForm = () => {
       <div className="text-center hover:text-blue-400 my-4">
         <Button onClick={generatePassword}>Generate password</Button>
       </div>
+
       <div className="text-center">
-        <Button className="bg-blue-500 text-white w-60" htmlType="submit">
-          Login
-        </Button>
+        {contextHolder}
+        <Space>
+          <Button className="bg-blue-500 text-white w-60" htmlType="submit">
+            Login
+          </Button>
+        </Space>
       </div>
     </Form>
   );
