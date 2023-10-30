@@ -1,33 +1,26 @@
 import React, { useState } from "react";
 import Layout from "@/components/layout/shared/navbar";
-import { PlusOutlined } from "@ant-design/icons";
+import { AppstoreAddOutlined } from "@ant-design/icons";
 import { Button, Col, Drawer, Form, Input, Row, Select, Space } from "antd";
-import BottomBox from "./bottom-box";
+import BottomBox from "../bottom-box";
 const { Option } = Select;
 
-const NewCustomer = () => {
+const NewCustomer = ({ children }) => {
+  // for open or close drawer
   const [open, setOpen] = useState(false);
-  // for box open
+  // for customer details box open or close
   const [openBox, setOpenBox] = useState(false);
-
-  const [form] = Form.useForm(); // Create a form instance
-  const showDrawer = () => {
-    setOpen(true);
-  };
-
-  const onClose = () => {
-    setOpen(false);
-  };
-
+  // Create a form instance
+  const [form] = Form.useForm();
+  // form submission
   const onFinish = (values) => {
-    // Handle form submission here
     // save the value on local storage
     const objectString = JSON.stringify(values);
     localStorage.setItem("customerData", objectString);
     // reset form
     form.resetFields();
     // close form
-    onClose();
+    setOpen(false);
     // open box model for details of customer
     setOpenBox(true);
   };
@@ -37,28 +30,20 @@ const NewCustomer = () => {
       <div className="w-9/12 mt-10 m-auto">
         <Button
           className="bg-blue-500 text-white"
-          onClick={showDrawer}
-          icon={<PlusOutlined />}
+          onClick={() => setOpen(true)}
+          icon={<AppstoreAddOutlined style={{ fontSize: "24" }} />}
         >
           Add New Customer
         </Button>
         <Drawer
           title="Add a new Customer"
           width={720}
-          onClose={onClose}
+          onClose={() => setOpen(false)}
           closable={false}
           open={open}
-          styles={{
-            body: {
-              paddingBottom: 80,
-            },
-          }}
+          className="p-10 text-xl"
         >
-          <Form
-            form={form}
-            layout="vertical"
-            onFinish={onFinish} // Handle form submission
-          >
+          <Form form={form} layout="vertical" onFinish={onFinish}>
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item
@@ -85,12 +70,7 @@ const NewCustomer = () => {
                     },
                   ]}
                 >
-                  <Input
-                    style={{
-                      width: "100%",
-                    }}
-                    placeholder="Please enter email"
-                  />
+                  <Input placeholder="Please enter email" />
                 </Form.Item>
               </Col>
             </Row>
@@ -129,7 +109,7 @@ const NewCustomer = () => {
                 <Button className="bg-blue-500 text-white" htmlType="submit">
                   Start
                 </Button>
-                <Button onClick={onClose}>Cancel</Button>
+                <Button onClick={() => setOpen(false)}>Cancel</Button>
               </Space>
             </Form.Item>
           </Form>

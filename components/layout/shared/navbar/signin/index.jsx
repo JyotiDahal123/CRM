@@ -1,15 +1,13 @@
 import { Modal } from "antd";
 import SigninForm from "./form";
 
-const SignIn = ({ openin, setOpenin }) => {
- 
+const SignIn = ({openin, setOpenin}) => {
   return (
     <>
       <Modal
         open={openin}
         onCancel={() => setOpenin(false)}
         footer={null}
-        className=""
         closable={false}
       >
         <div className="bg-gray-100  p-6">

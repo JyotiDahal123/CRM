@@ -8,7 +8,6 @@ const Signup = ({ open, setOpen }) => {
         open={open}
         onCancel={() => setOpen(false)}
         footer={null}
-        className=""
         closable={false}
       >
         <div className="bg-gray-100  p-6">

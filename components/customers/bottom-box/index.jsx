@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FormOutlined } from "@ant-design/icons";
 import { Button, Modal } from "antd";
 import DateTime from "./date-time";
 import Note from "./note";
@@ -7,11 +8,11 @@ const BottomBox = ({ openBox, setOpenBox }) => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-
+  // note open or close
   const [openNote, setOpenNote] = useState(false);
   const [data, setData] = useState({});
 
-  // Retrieve customer data from local storage when the component mounts
+  // getting data from local storage
   useEffect(() => {
     const objectString = localStorage.getItem("customerData");
     if (objectString) {
@@ -21,7 +22,6 @@ const BottomBox = ({ openBox, setOpenBox }) => {
   }, [openBox]);
 
   //for timer
-
   useEffect(() => {
     let interval;
 
@@ -61,14 +61,9 @@ const BottomBox = ({ openBox, setOpenBox }) => {
 
   return (
     <>
-      <Modal
-        title="Customer Details"
-        footer={null}
-        closable={false}
-        open={openBox}
-        width={1000}
-      >
+      <Modal footer={null} closable={false} open={openBox} width={1000}>
         <div className="p-8">
+          <h2 className="text-xl font-semibold mb-6">Customer Details</h2>
           <div className="flex justify-between">
             <div className="text-lg flex flex-col gap-2">
               <p>
@@ -101,10 +96,10 @@ const BottomBox = ({ openBox, setOpenBox }) => {
             </div>
             <div>
               <Button
-                className=" text-blue-600 border border-blue-600"
+                className="flex justify-center items-center gap-1 text-blue-600 border border-blue-600"
                 onClick={() => setOpenNote(true)}
               >
-                Note
+                <i class="bx bx-pencil"></i> <span>Note</span>
               </Button>
               <Note
                 openNote={openNote}
@@ -116,10 +111,10 @@ const BottomBox = ({ openBox, setOpenBox }) => {
 
           <div className="flex justify-between mt-12">
             <Button
-              className="bg-red-600 text-white px-6"
+              className="bg-red-600 text-white px-2 flex justify-center items-center gap-1"
               onClick={() => setOpenBox(false)}
             >
-              End Call
+              <i class="bx bx-phone-off"></i> <span>End Call</span>
             </Button>
             <div className="flex gap-4 text-lg items-center">
               <p className="">Follow up: </p> <DateTime />

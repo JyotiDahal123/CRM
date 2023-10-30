@@ -1,11 +1,8 @@
-import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 const onFinish = (values) => {
   console.log("Success:", values);
 };
-// const onFinishFailed = (errorInfo) => {
-//   console.log("Failed:", errorInfo);
-// };
+
 const SignupForm = () => {
   const inputField = [
     {
@@ -52,10 +49,11 @@ const SignupForm = () => {
         remember: true,
       }}
       onFinish={onFinish}
-      // onFinishFailed={onFinishFailed}
       autoComplete="on"
+      className=""
     >
-      <h2 className="text-xl text-center mb-4">SignUp</h2>
+      <h2 className="text-xl text-center mb-4">Let's SignUp</h2>
+
       {inputField.map((item, index) => (
         <Form.Item
           key={index}

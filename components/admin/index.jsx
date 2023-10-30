@@ -3,8 +3,8 @@ import Layout from "../layout/shared/navbar";
 const Admin = () => {
   return (
     <Layout>
-      <div>
-        <h1>Admin page</h1>
+      <div className="p-8">
+        <h1 className="text-xl font-semibold">Welcome to Admin page</h1>
       </div>
     </Layout>
   );

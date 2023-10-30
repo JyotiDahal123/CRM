@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Button, Form, Input, message } from "antd";
+import { Button, Form, Input } from "antd";
 import { useRouter } from "next/router";
 
 const SigninForm = () => {
@@ -10,7 +9,7 @@ const SigninForm = () => {
     router.push("/customers");
   };
 
-  // Function to generate a random password
+  // Random password generating function
   const generatePassword = () => {
     const chars =
       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+";
@@ -19,57 +18,57 @@ const SigninForm = () => {
       const randomIndex = Math.floor(Math.random() * chars.length);
       password += chars[randomIndex];
     }
-    form.setFieldsValue({ password: password }); // Set the generated password in the form
+    // Set the generated password in the password input field
+    form.setFieldsValue({ password: password });
   };
 
   return (
-    <>
-      <Form
-        form={form}
-        name="basic"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        autoComplete="on"
+    <Form
+      form={form}
+      name="basic"
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+      autoComplete="on"
+    >
+      <h2 className="text-xl text-center mb-4">Sign In</h2>
+      <Form.Item
+        label="Email"
+        name="email"
+        rules={[
+          {
+            required: true,
+            message: "Please input your email!",
+          },
+        ]}
+        className="text-red-500"
       >
-        <h2 className="text-xl text-center mb-4">Sign In</h2>
-        <Form.Item
-          label="Email"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: "Please input your email!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+        <Input className="w-full" />
+      </Form.Item>
 
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: "Please input your password!",
+          },
+        ]}
+      >
+        <Input.Password className="w-full" />
+      </Form.Item>
 
-        <div className="text-center hover:to-blue-400 my-4">
-          <Button onClick={generatePassword}>Generate password</Button>
-        </div>
-        <div className="text-center">
-          <Button className="bg-blue-500 text-white w-60" htmlType="submit">
-            Login
-          </Button>
-        </div>
-      </Form>
-    </>
+      <div className="text-center hover:text-blue-400 my-4">
+        <Button onClick={generatePassword}>Generate password</Button>
+      </div>
+      <div className="text-center">
+        <Button className="bg-blue-500 text-white w-60" htmlType="submit">
+          Login
+        </Button>
+      </div>
+    </Form>
   );
 };
 
